@@ -23,7 +23,13 @@ const Header =(props) => {
                 </div>
                 <div className="header_bottom">
                 <Link to="/">禮品卡</Link>
-                <Link to="/">新品熱賣</Link>
+                <div className="header_bottom-newitem">
+                    <span>新品熱賣</span>
+                    <div className="header_bottom-newitem-cat">
+                        <Link to="/">男裝</Link>
+                        <Link to="/">女裝</Link>
+                    </div>
+                </div>
                 <Link to="/">男裝</Link>
                 <Link to="/">女裝</Link>
                 <Link to="/">童裝</Link>

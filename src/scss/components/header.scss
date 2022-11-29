@@ -26,8 +26,6 @@
     }
     &_tittle{
         font-size: 2rem;
-        text-decoration: none;
-        color: #000;
         &:hover {
             color: #000;
         }
@@ -40,16 +38,12 @@
     }
     &_login{
         margin: 5%;
-        text-decoration: none;
-        color: #000;
         &:hover {
             color: #000;
         }
     }
     &_reg{
         margin: 5%;
-        text-decoration: none;
-        color: #000;
         &:hover {
             color: #000;
         }
@@ -61,12 +55,30 @@
     }
     &_bottom{
         height: 50%;
+        display: flex;
         & > * {
-            text-decoration: none;
-            color: #000;
             margin-right: 2rem;
             &:hover {
                 color: #000;
+            }
+        }
+        &-newitem:hover &-newitem-cat{
+            display: flex; 
+        }
+        &-newitem-cat{
+            display: none; 
+            width: 10%;
+            transform: translateX(-30%);
+            background-color: #fff;
+            margin-top: 2rem;
+            padding: 1rem;
+            position: absolute;
+            //display: flex;
+            flex-direction: column;
+            border-radius: 0.3rem;
+            box-shadow: 5px 5px 15px -3px rgb(0 0 0 / 70%);
+            & > *{
+                margin: 1rem;
             }
         }
     }
