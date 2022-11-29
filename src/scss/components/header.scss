@@ -1,0 +1,78 @@
+.header{
+    background-color: #fff;
+    height: 8rem;
+    width: 100%;
+    padding: 1rem 3rem;
+    padding-bottom: 0;
+    border-bottom: solid 1px #cfd2cf;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    z-index: 10;
+    &_top{
+        height: 50%;
+        width: 100%;
+        align-items: center;
+        display: flex;
+    }
+    &_logo{
+        display: flex;
+        flex: auto;
+    }
+    &_img{
+        height: 3rem;
+        width: 3rem;
+    }
+    &_tittle{
+        font-size: 2rem;
+        text-decoration: none;
+        color: #000;
+        &:hover {
+            color: #000;
+        }
+    }
+    &_userinfo{
+        align-items: center;
+        display: flex;
+        justify-content: flex-end;
+        flex: 0 0 20%;
+    }
+    &_login{
+        margin: 5%;
+        text-decoration: none;
+        color: #000;
+        &:hover {
+            color: #000;
+        }
+    }
+    &_reg{
+        margin: 5%;
+        text-decoration: none;
+        color: #000;
+        &:hover {
+            color: #000;
+        }
+    }
+    &_cart{
+        margin: 5%;
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+    &_bottom{
+        height: 50%;
+        & > * {
+            text-decoration: none;
+            color: #000;
+            margin-right: 2rem;
+            &:hover {
+                color: #000;
+            }
+        }
+    }
+
+}
+
+.dummy{
+    height: 8rem;
+}
