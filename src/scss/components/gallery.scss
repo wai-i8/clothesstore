@@ -1,11 +1,66 @@
 .gallery {
-    .jumbotron {
-        padding: 4rem 2rem;
-        //margin-bottom: 2rem;
-        background-color: var(--bs-light);
-        border-radius: .3rem;  
-        height: 70vh;
+
+    overflow: hidden;
+    position: relative;
+    &_ul {
+        height: 100%;
+        width: 300%;
+        display: flex;
+        transition: all 0.8s;
     }
+    &_li {
+
+    }
+    &_img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+    }
+    [class$="-button"] {
+        font-size: 2rem;
+        position: absolute;
+        top: 50%;
+        color: #fff;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transform: translateY(-50%);
+    }
+    &_left-button {
+        left: 5%;
+    }
+    &_right-button {
+        right: 5%;
+    }
+    &_index{
+        position: absolute;
+        top: 92%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        & > * {
+            &:not(:last-child) {
+              margin-right: 2rem;
+            }
+        }
+        &-dot{
+            //background-color: transparent;
+            border: none;
+            font-size: 0.5em;
+            border-radius: 1rem;
+            background-color: rgba(white, 0.4);
+            &_active{
+                border: none;
+                font-size: 0.5em;
+                background-color: rgba(white, 1);
+                border-radius: 1rem;
+            }
+        }
+       
+    }
+    
+
+/*
     h1{
         font-size: 52px;
         font-weight: 400;
@@ -23,6 +78,6 @@
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
     }
-
+*/
 
 }

@@ -55,11 +55,11 @@
         width: 100%;
         align-items: center; 
         display: flex;
-        font-size: 0.8rem;
+        font-size: 0.65rem;
         &-left{
             width: 50%;
             & > *{
-                margin-right: 3rem;
+                margin-right: 2rem;
             }
         }
         &-right{
