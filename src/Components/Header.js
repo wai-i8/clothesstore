@@ -11,7 +11,7 @@ const Header =(props) => {
                 <div className="header_top">
                     <div className="header_logo">
                         <a href="#">
-                            <img className="header_img" src="https://www.pngitem.com/pimgs/m/331-3312863_clothes-logo-icon-png-transparent-png.png" />
+                            <img className="header_img" src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/sho-chan-mother/sticker_9.gif" />
                         </a>
                         <a className="header_tittle" href="#">蚊蚊時裝</a>
                     </div>

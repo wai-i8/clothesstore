@@ -2,6 +2,7 @@
 
     overflow: hidden;
     position: relative;
+    margin: 0 0 60px;
     &_ul {
         height: 100%;
         width: 300%;
@@ -33,6 +34,7 @@
         right: 5%;
     }
     &_index{
+        height: 15px;
         position: absolute;
         top: 92%;
         left: 50%;
@@ -46,7 +48,7 @@
         &-dot{
             //background-color: transparent;
             border: none;
-            font-size: 0.5em;
+            font-size: 0.5rem;
             border-radius: 1rem;
             background-color: rgba(white, 0.4);
             &_active{

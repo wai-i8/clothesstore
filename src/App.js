@@ -4,12 +4,14 @@ import { Fragment } from 'react';
 import Gallery from './Components/Gallery';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
+import Showcase from './Components/Showcase';
 
 function App() {
   return (
     <Fragment>
       <Header />
       <Gallery />
+      <Showcase />
       <Footer />
     </Fragment>
 

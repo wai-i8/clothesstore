@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Gallery = (props) => {
     const [indexOfCurrentImg, setindexOfCurrentImg] = useState(0);
@@ -12,12 +12,11 @@ const Gallery = (props) => {
     const imgList = imgUrl.map( (x, index)=> {
         return (
             <li key={index} className="gallery_li">
-                <img src={x} className="gallery_img" />
+                <img src={x} className="gallery_img" alt="" />
             </li>
         )
     })
     let useEffectB = true;
-    let timeoutID = 0;
     useEffect(() => {
         if (useEffectB){
             setInterval(()=>{
@@ -59,7 +58,7 @@ const Gallery = (props) => {
 
     const indexDot = imgUrl.map((x, index) => {
         return(
-            <button className={`gallery_index-dot ${index === indexOfCurrentImg && "gallery_index-dot_active"}`} 
+            <button key={index} className={`gallery_index-dot ${index === indexOfCurrentImg && "gallery_index-dot_active"}`} 
             onClick={() => dotClickHandler(index)}>
                 &nbsp;
             </button>
