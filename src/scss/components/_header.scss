@@ -37,22 +37,11 @@
         justify-content: flex-end;
         flex: 0 0 20%;
     }
-    &_login{
+    &_login, &_reg, &_cart{
         margin: 5%;
         &:hover {
             color: #000;
         }
-    }
-    &_reg{
-        margin: 5%;
-        &:hover {
-            color: #000;
-        }
-    }
-    &_cart{
-        margin: 5%;
-        height: 1.5rem;
-        width: 1.5rem;
     }
     &_bottom{
         height: 50%;

@@ -18,7 +18,7 @@ const Header =(props) => {
                     <div className="header_userinfo">
                         <a className="header_login" href="#">登入</a>
                         <a className="header_reg" href="#">註冊</a>
-                        <img className="header_cart" src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png" />
+                        <a class="header_cart fa-solid fa-cart-shopping" href="#"></a>
                     </div>
                 </div>
                 <div className="header_bottom">

@@ -12,17 +12,17 @@ const Footer =(props) => {
                 <div className="footer_top-social">
                     <span className="footer_top-social-followus">追蹤我們</span>
                     <div className="footer_top-social-icon">
-                        <a className="fa-brands fa-facebook white-font font-big" href="#" />
-                        <a className="fa-brands fa-instagram white-font font-big" href="https://www.instagram.com/likes_168" />
-                        <a className="fa-brands fa-youtube white-font font-big" href="#" />
+                        <a className="fa-brands fa-twitter" href="#" />
+                        <a className="fa-brands fa-instagram" href="https://www.instagram.com/likes_168" />
+                        <a className="fa-brands fa-youtube" href="#" />
                     </div>
                 </div>
                 <div className="footer_top-payment">
                     <span>支付方法</span>
                     <div className="footer_top-payment-icon">
-                        <a className="fa-brands fa-cc-visa white-font font-big" href="#" />
-                        <a className="fa-brands fa-cc-mastercard white-font font-big" href="#" />
-                        <a className="fa-brands fa-cc-paypal  white-font font-big" href="#" />
+                        <a className="fa-brands fa-cc-visa" href="#" />
+                        <a className="fa-brands fa-cc-mastercard" href="#" />
+                        <a className="fa-brands fa-cc-paypal " href="#" />
                     </div>
                 </div>
             </div>

@@ -5,13 +5,13 @@ import Gallery from './Components/Gallery';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Showcase from './Components/Showcase';
+import Home from './Pages/Home';
 
 function App() {
   return (
     <Fragment>
       <Header />
-      <Gallery />
-      <Showcase />
+      <Home />
       <Footer />
     </Fragment>
 
