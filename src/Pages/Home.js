@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import Gallery from "../Components/Gallery";
 import Showcase from "../Components/Showcase";

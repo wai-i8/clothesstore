@@ -1,4 +1,5 @@
 //import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import { Fragment } from 'react';
 import Gallery from './Components/Gallery';
