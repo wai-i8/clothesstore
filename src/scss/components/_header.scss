@@ -1,8 +1,19 @@
+@keyframes list-popup {
+    from {
+        transform: translateX(-100%);
+        //opacity: 0;
+    }
+    to {
+        transform: translateX(0%);
+        opacity: 100;
+    }
+  }
+
 .header{
     background-color: #fff;
     height: 8rem;
     width: 100%;
-    padding: 1rem 3rem;
+    padding: 2% 3% 0%;
     padding-bottom: 0;
     border-bottom: solid 1px #cfd2cf;
     display: flex;
@@ -10,11 +21,29 @@
     align-items: center;
     position: fixed;
     z-index: 10;
+    @include phonein{
+        height: 4rem;
+    }
     &_top{
         height: 50%;
         width: 100%;
         align-items: center;
         display: flex;
+        @include phonein{
+            height: 100%;
+        }
+    }
+    &_phoneicon{
+        display: none;
+        @include phonein{
+            display:flex; 
+            width: 50%;
+            font-size: 1.5rem;
+            padding-left: 5%;
+            &_img{
+                cursor: pointer;
+            }
+        }
     }
     &_logo{
         display: flex;
@@ -23,6 +52,9 @@
     &_img{
         height: 3rem;
         width: 3rem;
+        @include phonein{
+            transform: translateX(-50%);
+        }
     }
     &_tittle{
         font-size: 2rem;
@@ -30,12 +62,14 @@
         &:hover {
             color: #000;
         }
+        @include phoneout;
     }
     &_userinfo{
         align-items: center;
         display: flex;
         justify-content: flex-end;
         flex: 0 0 20%;
+        @include phoneout;
     }
     &_login, &_reg, &_cart{
         margin: 5%;
@@ -44,6 +78,7 @@
         }
     }
     &_bottom{
+        @include phoneout;
         height: 50%;
         display: flex;
         font-size: 1.2rem;
@@ -57,12 +92,14 @@
         &-newitem:hover &-newitem-cat{
             display: flex; 
         }
+        &-newitem-title{
+            height: 100%;
+        }
         &-newitem-cat{
             display: none; 
-            width: 10%;
+            width: 20%;
             transform: translateX(-30%);
             background-color: #fff;
-            margin-top: 2rem;
             padding: 1rem;
             position: absolute;
             //display: flex;
@@ -74,9 +111,36 @@
             }
         }
     }
+    &_phonelist{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        margin-top: 3.5rem;
+        background-color: rgb(255, 255, 255);
+        animation: list-popup 0.5s;
+        &_ul{
+            align-items: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            font-size: 2rem;
+            & > * {
+                height: 8%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                padding-left: 10%;
+            }
+        }
+    }
 
 }
 
 .dummy{
     height: 8rem;
+    @include phonein{
+        height: 3.5rem;
+    }
 }
+
+
