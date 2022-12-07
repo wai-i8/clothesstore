@@ -1,29 +1,29 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
 
-const Footer =(props) => {
+const Footer =() => {
     return(
         <div className="footer">
             <div className="footer_top">
                 <div className="footer_top-about">
-                <Link to="/">關於我們</Link>
-                <a href="#">聯絡我們</a>
-                <a href="#">退款和退貨政策</a>
+                <Link to="#">關於我們</Link>
+                <Link to="#">聯絡我們</Link>
+                <Link to="#">退款和退貨政策</Link>
                 </div>
                 <div className="footer_top-social">
                     <span className="footer_top-social-followus">追蹤我們</span>
                     <div className="footer_top-social-icon">
-                        <a className="fa-brands fa-twitter" href="#" />
-                        <a className="fa-brands fa-instagram" href="https://www.instagram.com/likes_168" />
-                        <a className="fa-brands fa-youtube" href="#" />
+                        <Link className="fa-brands fa-twitter" to="#" ></Link>
+                        <Link className="fa-brands fa-instagram" href="https://www.instagram.com/likes_168"></Link>
+                        <Link className="fa-brands fa-youtube" to="#"></Link>
                     </div>
                 </div>
                 <div className="footer_top-payment">
                     <span>支付方法</span>
                     <div className="footer_top-payment-icon">
-                        <a className="fa-brands fa-cc-visa" href="#" />
-                        <a className="fa-brands fa-cc-mastercard" href="#" />
-                        <a className="fa-brands fa-cc-paypal " href="#" />
+                        <Link className="fa-brands fa-cc-visa" to="#"></Link>
+                        <Link className="fa-brands fa-cc-mastercard" to="#"></Link>
+                        <Link className="fa-brands fa-cc-paypal " to="#"></Link>
                     </div>
                 </div>
             </div>

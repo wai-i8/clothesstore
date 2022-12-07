@@ -1,18 +1,22 @@
 //import logo from './logo.svg';
-import React from 'react';
 import './App.css';
-import { Fragment } from 'react';
-import Gallery from './Components/Gallery';
+import React, { Fragment } from "react";
+import { Route, Routes} from "react-router-dom"
+
 import Header from './Components/Header';
 import Footer from './Components/Footer';
-import Showcase from './Components/Showcase';
 import Home from './Pages/Home';
+import Signup from './Pages/Signup';
+
 
 function App() {
   return (
     <Fragment>
       <Header />
-      <Home />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="signup" element={<Signup />} />
+      </Routes>
       <Footer />
     </Fragment>
 

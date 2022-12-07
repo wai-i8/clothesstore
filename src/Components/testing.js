@@ -1,5 +1,4 @@
-import React from 'react';
-import { useRef} from "react"
+import React, { useRef} from "react"
 function TextInputWithFocusButton() {
     const inputEl = useRef(null);
     const onButtonClick = () => {
@@ -10,6 +9,7 @@ function TextInputWithFocusButton() {
       <>
         <input ref={inputEl} type="text" />
         <button onClick={onButtonClick}>Focus the input</button>
+        
       </>
     );
   }

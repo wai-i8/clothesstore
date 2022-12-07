@@ -1,9 +1,8 @@
-import React from 'react';
-import { Fragment, useState, useRef } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from '../img/dancing.gif';
 
-const Header =(props) => {
+const Header =() => {
     const [phoneList, setPhoneList] = useState(["none", "header_phoneicon_img fa-solid fa-bars"]);
 
     const headerClickHandler = () => {
@@ -22,29 +21,29 @@ const Header =(props) => {
                         <i className={phoneList[1]} onClick={headerClickHandler}></i>
                     </div>
                     <div className="header_logo">
-                        <a href="#">
-                            <img className="header_img" src={logo} />
-                        </a>
-                        <a className="header_tittle" href="#">蚊蚊時裝</a>
+                        <Link to="/">
+                            <img className="header_img" src={logo} alt="" />
+                        </Link >
+                        <Link className="header_tittle" to="/">蚊蚊時裝</Link >
                     </div>
                     <div className="header_userinfo">
-                        <a className="header_login" href="#">登入</a>
-                        <a className="header_reg" href="#">註冊</a>
-                        <a className="header_cart fa-solid fa-cart-shopping" href="#"></a>
+                        <Link className="header_login" to="#">登入</Link >
+                        <Link className="header_reg" to="signup">註冊</Link >
+                        <Link className="header_cart fa-solid fa-cart-shopping" to="#"></Link >
                     </div>
                 </div>
                 <div className="header_bottom">
-                <Link to="/">禮品卡</Link>
+                <Link to="#">禮品卡</Link>
                 <div className="header_bottom-newitem">
                     <div className="header_bottom-newitem-title"><span>新品熱賣</span></div>
                     <div className="header_bottom-newitem-cat">
-                        <Link to="/">男裝</Link>
-                        <Link to="/">女裝</Link>
+                        <Link to="#">男裝</Link>
+                        <Link to="#">女裝</Link>
                     </div>
                 </div>
-                <Link to="/">男裝</Link>
-                <Link to="/">女裝</Link>
-                <Link to="/">童裝</Link>
+                <Link to="#">男裝</Link>
+                <Link to="#">女裝</Link>
+                <Link to="#">童裝</Link>
                 </div>
                 <div className="header_phonelist" style={{display: phoneList[0]}}>
                      <ul className="header_phonelist_ul">

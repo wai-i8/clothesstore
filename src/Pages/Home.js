@@ -1,8 +1,7 @@
-import React from 'react';
-import { useState } from "react";
+import React, { useState } from "react";
 import Gallery from "../Components/Gallery";
 import Showcase from "../Components/Showcase";
-import TextInputWithFocusButton from "../Components/testing";
+//import TextInputWithFocusButton from "../Components/testing";
 
 const Home = () => {
 
@@ -34,6 +33,7 @@ const Home = () => {
         <Gallery />
         <Showcase />
         {showBotton && <button class="topbtn fa-solid fa-arrow-up" onClick={scrollToTop}></button>}
+        {/*TextInputWithFocusButton />*/}
         </>
     )
 }
