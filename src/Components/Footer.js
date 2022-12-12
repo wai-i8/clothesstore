@@ -14,7 +14,7 @@ const Footer =() => {
                     <span className="footer_top-social-followus">追蹤我們</span>
                     <div className="footer_top-social-icon">
                         <Link className="fa-brands fa-twitter" to="#" ></Link>
-                        <Link className="fa-brands fa-instagram" href="https://www.instagram.com/likes_168"></Link>
+                        <a className="fa-brands fa-instagram" href="https://www.instagram.com/likes_168"></a>
                         <Link className="fa-brands fa-youtube" to="#"></Link>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Home from './Pages/Home';
 import Signup from './Pages/Signup';
+import Woman from './Pages/Woman';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="signup" element={<Signup />} />
+          <Route exact path="woman" element={<Woman />} />
       </Routes>
       <Footer />
     </Fragment>

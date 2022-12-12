@@ -1,0 +1,40 @@
+.woman{
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    span{
+        font-family: monospace;
+    }
+    &_product{
+        width: 65%;
+        display: flex;
+        //align-items: center;
+        &_item{
+            padding: 1%;
+            &_details{
+                padding: 3%;
+                display: flex;
+                align-items: center;
+                &_title{
+                    width: 80%;
+                }
+                &_price{
+                    font-size: 2rem;
+                }
+            }
+            &_cart{
+                width: 100%;
+                text-align: center;
+                & > *{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+}
+
+img {
+    width: 100%;
+}

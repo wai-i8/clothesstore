@@ -13,7 +13,7 @@
     background-color: #fff;
     height: 8rem;
     width: 100%;
-    padding: 2% 3% 0%;
+    padding: 20px 30px 0px;
     padding-bottom: 0;
     border-bottom: solid 1px #cfd2cf;
     display: flex;
@@ -23,6 +23,7 @@
     z-index: 10;
     @include phonein{
         height: 4rem;
+        padding: 0;
     }
     &_top{
         height: 50%;
@@ -72,9 +73,23 @@
         @include phoneout;
     }
     &_login, &_reg, &_cart{
-        margin: 5%;
+        margin: 3%;
+        width: 36px;
+        text-align: center;
+        display : flex;
         &:hover {
             color: #000;
+            cursor: pointer;
+        }
+        &_no{
+            background-color: rgba(255, 255, 255, 1);
+            width: 100%;
+            border-radius: 10px;
+            font-family: cursive;
+            font-size: 0.6rem;
+            font-weight: 900;
+            transform: translate(-5px, -10px);
+            box-shadow: 5px 5px 15px -1px rgb(0 0 0 / 70%);
         }
     }
     &_bottom{
@@ -115,7 +130,7 @@
         position: fixed;
         width: 100%;
         height: 100%;
-        margin-top: 3.5rem;
+        margin-top: 4rem;
         background-color: rgb(255, 255, 255);
         animation: list-popup 0.5s;
         &_ul{

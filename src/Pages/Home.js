@@ -32,7 +32,7 @@ const Home = () => {
         <>
         <Gallery />
         <Showcase />
-        {showBotton && <button class="topbtn fa-solid fa-arrow-up" onClick={scrollToTop}></button>}
+        {showBotton && <button className="topbtn fa-solid fa-arrow-up" onClick={scrollToTop}></button>}
         {/*TextInputWithFocusButton />*/}
         </>
     )
