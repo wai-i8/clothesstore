@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useInput from "../Hook/useInput";
+import { authAction } from "../Store/auth-Slice";
+import { useDispatch, useSelector } from "react-redux";
 
 const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 const isEmailFormat = (value) => emailRule.test(value);
 const isPwdFormat= (value) => value.length >=8 ;
+
 
 const Signin = (props) => {
     const {
@@ -13,18 +16,27 @@ const Signin = (props) => {
         onChangeValue: onChangeEmail,
         onBlurValue: onBlurEmail,
         reset: resetEmail
-      } = useInput(isEmailFormat);
+    } = useInput(isEmailFormat);
 
-      const {
+    const {
         value: pwdValue,
         isValid: pwdValueIsValid,
         hasError: pwdValueError,
         onChangeValue: onChangePwd,
         onBlurValue: onBlurPwd,
         reset: resetPwd
-      } = useInput(isPwdFormat);
+    } = useInput(isPwdFormat);
 
-      const submitForm = (e) => {
+    const dispatch = useDispatch();
+    const isLogin = useSelector(state => state.auth.isLogin);
+    const [isError, setIsError] = useState(false);
+    useEffect(() => {
+        if(isLogin){
+            props.close()
+        }
+    })
+
+    const submitForm = (e) => {
         e.preventDefault();
     
         if (!emailValueIsValid) {
@@ -37,8 +49,14 @@ const Signin = (props) => {
         // Backend Handling
         //
 
+        dispatch(authAction.login({email: emailValue, pwd: pwdValue}));
+
         resetEmail();
         resetPwd();
+        setTimeout(()=>{
+            setIsError(true);
+        }, 100)  
+        
     }
 
     return(
@@ -47,6 +65,7 @@ const Signin = (props) => {
                     <i className="signin_close_icon  fa-solid fa-xmark" onClick={() => props.close()}></i>
                 </div>
                 <form className="signin_form" onSubmit={submitForm}>
+                    {isError && <div className="signin_form_error"><i class="fa-solid fa-circle-exclamation"></i>電郵地址或密碼錯誤</div>}
                     <div className="signin_email">
                         <input placeholder={emailValueError? "請輸入正確的電郵地址" : "電郵地址"}
                             className={emailValueError? "input-error" : ""}

@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [
-]
-
+const initialState = [];
 
 const cartSlice = createSlice({
     name: "cartSlice",
@@ -17,11 +15,11 @@ const cartSlice = createSlice({
             }else{
                 state[index].qty ++;
             }
-            //state.push({id: 2, name: "Knit melton tailored coat", img: "https://www.gu-global.com/hk/images/chirashi/34/342873/source/items/11_342873.jpg" , price: 299, qty:1});
-            //console.log("After addItem: state: ", state);
+            localStorage.setItem("cart",JSON.stringify(state));
         },
         increaseItem(state,actions){
             state[actions.payload].qty++;
+            localStorage.setItem("cart",JSON.stringify(state));
         },
         decreaseItem(state,actions){
             state[actions.payload].qty--;
@@ -32,18 +30,20 @@ const cartSlice = createSlice({
                 state.length = 0;
                 temp.map(x => state.push(x));
             }
-            //console.log("state.length ", state.length);
-            //console.log("state[0].name: ", state[0].name);
-            
-            
+            localStorage.setItem("cart",JSON.stringify(state));
         },
         deleteAllItem(state){
             console.log("Before deleteAllItem: state: ", state);
             state.length = 0;
             console.log("After deleteAllItem: state: ", state);
-            //localStorage.removeItem("cart");
-        }
-        
+            localStorage.setItem("cart",JSON.stringify([]));
+        },
+        refreshAllItem(state){
+            state.length = 0;
+            JSON.parse(localStorage.getItem("cart")).map((x) => state.push({id: x.id, name: x.name, img: x.img, price: x.price, qty: x.qty}));
+            //console.log("state: ",state);
+            //console.log("refreshAllItem");
+        }        
     }
 
 

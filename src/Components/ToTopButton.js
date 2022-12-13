@@ -1,12 +1,8 @@
-import React, { useState } from "react";
-import Gallery from "../Components/Gallery";
-import Showcase from "../Components/Showcase";
-import ToTopButton from "../Components/ToTopButton";
-//import TextInputWithFocusButton from "../Components/testing";
+import React from "react";
+import { useState } from "react";
 
-const Home = () => {
-
-    const [showBotton, setShowBotton] = useState(0)
+const ToTopButton = () => {
+    const [showBotton, setShowBotton] = useState(0);
 
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
@@ -30,12 +26,9 @@ const Home = () => {
 
     return(
         <>
-        <Gallery />
-        <Showcase />
-        <ToTopButton />
-        {/*TextInputWithFocusButton />*/}
+            {showBotton && <button className="totopbutton fa-solid fa-arrow-up" onClick={scrollToTop}></button>}
         </>
     )
 }
 
-export default Home;
+export default ToTopButton;

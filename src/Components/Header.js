@@ -1,16 +1,28 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from '../img/dancing.gif';
 import Backdrop from "./Backdrop";
 import Signin from './Signin';
 import Cart from "./Cart";
-import { useSelector } from "react-redux"
+import { useSelector , useDispatch } from "react-redux"
+import { cartAction } from "../Store/cart-Slice";
+import { authAction } from "../Store/auth-Slice";
+import Confirm from "./Confirm";
 
 const Header =() => {
     const [phoneList, setPhoneList] = useState(["none", "header_phoneicon_img fa-solid fa-bars"]);
     const [showSignin, setShowSignin] = useState(false);
     const [showCart, setShowCart] = useState(false);
+    const [showConfirm, setShowConfirm] =useState(false);
+    
+    const dispatch = useDispatch();
+    useEffect(()=>{dispatch(cartAction.refreshAllItem());},[]);
     const state = useSelector(state => state.cart);
+    //const state = JSON.parse(localStorage.getItem("cart"));
+    useEffect(()=>{dispatch(authAction.loadLogin());},[]);
+    const isLogin = useSelector(state => state.auth.isLogin);
+    //const isLogin = JSON.parse(localStorage.getItem("auth")).isLogin;
+    console.log(isLogin);
 
     const headerClickHandler = () => {
         if (phoneList[0] === "none"){
@@ -39,10 +51,18 @@ const Header =() => {
                         <Link className="header_tittle" to="/">蚊蚊時裝</Link >
                     </div>
                     <div className="header_userinfo">
-                        <span className="header_login" onClick={() => setShowSignin(true)}>登入</span >
-                        <Link className="header_reg" to="signup">註冊</Link >
-                        <div className="header_cart">
-                            <i className="header_cart_icon fa-solid fa-cart-shopping" onClick={() => showCart? setShowCart(false) : setShowCart(true)}></i>
+                        {!isLogin && <span className="header_login" onClick={() => setShowSignin(true)}>登入</span >}
+                        {!isLogin && <Link className="header_reg" to="signup">註冊</Link >}
+                        
+                        {isLogin && <div className="header_userinfo_welcome">
+                            <span>歡迎你! 蚊蚊 </span>
+                            <i className="fa-solid fa-chevron-down"></i>
+                            <div className="header_userinfo_welcome_list">
+                                <span onClick={() => setShowConfirm(true)}>登出</span>
+                            </div>
+                        </div>}
+                        <div className="header_cart" onClick={() => showCart? setShowCart(false) : setShowCart(true)}>
+                            <i className="header_cart_icon fa-solid fa-cart-shopping"></i>
                             {cartItem && <div className="header_cart_no">{cartItem}</div>}
                             {showCart &&  
                             <Backdrop close={() => setShowCart(false)} transpanent={0}>
@@ -53,17 +73,16 @@ const Header =() => {
                     </div>
                 </div>
                 <div className="header_bottom">
-                <Link to="#">禮品卡</Link>
                 <div className="header_bottom-newitem">
                     <div className="header_bottom-newitem-title"><span>新品熱賣</span></div>
                     <div className="header_bottom-newitem-cat">
-                        <Link to="#">男裝</Link>
-                        <Link to="#">女裝</Link>
+                        <Link to="man">男裝</Link>
+                        <Link to="woman">女裝</Link>
                     </div>
                 </div>
-                <Link to="#">男裝</Link>
+                <Link to="man">男裝</Link>
                 <Link to="woman">女裝</Link>
-                <Link to="#">童裝</Link>
+                <Link to="child">童裝</Link>
                 </div>
                 <div className="header_phonelist" style={{display: phoneList[0]}}>
                      <ul className="header_phonelist_ul">
@@ -82,6 +101,10 @@ const Header =() => {
             {showSignin &&  
             <Backdrop close={() => setShowSignin(false)}  transpanent={0.6}>
                 <Signin close={() => setShowSignin(false)} />
+            </Backdrop> }
+            {showConfirm &&  
+            <Backdrop close={() => setShowConfirm(false)} transpanent={0.6}>
+                <Confirm close={() => setShowConfirm(false)} clear={() => dispatch(authAction.logout())} >確認登出?</Confirm>
             </Backdrop> }
         </Fragment>
     );

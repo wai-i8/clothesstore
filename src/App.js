@@ -17,7 +17,9 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="signup" element={<Signup />} />
-          <Route exact path="woman" element={<Woman />} />
+          <Route exact path="woman" element={<Woman>woman</Woman>} />
+          <Route exact path="man" element={<Woman>man</Woman>} />
+          <Route exact path="child" element={<Woman>child</Woman>} />
       </Routes>
       <Footer />
     </Fragment>

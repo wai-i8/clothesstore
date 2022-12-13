@@ -8,10 +8,11 @@
     }
     &_product{
         width: 65%;
-        display: flex;
-        //align-items: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 25rem);
+        align-items: center;
         &_item{
-            padding: 1%;
+            padding: 30px 10px 10px;
             &_details{
                 padding: 3%;
                 display: flex;

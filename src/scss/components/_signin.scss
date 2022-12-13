@@ -1,6 +1,6 @@
 .signin{
     width: 30%;
-    height: 30%;
+    height: 35%;
     background-color: white;
     position: fixed; 
     left: 50%;
@@ -16,6 +16,16 @@
             text-align: center;
             padding:5px 1.5% 10px;
         }
+        &_error{
+            background-color: pink;
+            margin: 0% 25% 10px;
+            border-radius: 10px;
+            border: 1px solid red;
+
+        }
+        &_submit{
+            margin-top: 10px;
+        }
     }
     &_close{
         text-align: end;
@@ -24,11 +34,6 @@
         font-size: 1.5rem;
         & :hover{
             cursor: pointer;
-        }
-    }
-    &_form{
-        &_submit{
-            margin-top: 10px;
         }
     }
     input{
