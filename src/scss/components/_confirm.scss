@@ -25,7 +25,10 @@
             text-align: center;
             padding:5px 1.5% 10px;
         }
-        &_submit,  &_cancel{
+        &_submit{
+            width: 50%;
+        }
+        &_cancel{
             width: 50%;
         }
     }

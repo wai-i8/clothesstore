@@ -48,8 +48,21 @@ const Signin = (props) => {
         //
         // Backend Handling
         //
+        let body = {"email": emailValue,"pwd": pwdValue};
+            
+        fetch("http://192.168.88.53:8080/login", {method: "POST", 
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify(body)})
+        .then(res => res.json())
+            .then((result) => {
+                console.log("result: ", result.token);
+                if (result.status === "1"){
+                    dispatch(authAction.login({name: result.name, token: result.token}));                 
+                }
+            }
+        )
 
-        dispatch(authAction.login({email: emailValue, pwd: pwdValue}));
+        //dispatch(authAction.login({email: emailValue, pwd: pwdValue}));
 
         resetEmail();
         resetPwd();
@@ -65,7 +78,7 @@ const Signin = (props) => {
                     <i className="signin_close_icon  fa-solid fa-xmark" onClick={() => props.close()}></i>
                 </div>
                 <form className="signin_form" onSubmit={submitForm}>
-                    {isError && <div className="signin_form_error"><i class="fa-solid fa-circle-exclamation"></i>電郵地址或密碼錯誤</div>}
+                    {isError && <div className="signin_form_error"><i className="fa-solid fa-circle-exclamation"></i>電郵地址或密碼錯誤</div>}
                     <div className="signin_email">
                         <input placeholder={emailValueError? "請輸入正確的電郵地址" : "電郵地址"}
                             className={emailValueError? "input-error" : ""}

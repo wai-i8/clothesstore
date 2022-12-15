@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 const ToTopButton = () => {
-    const [showBotton, setShowBotton] = useState(0);
+    const [showBotton, setShowBotton] = useState(false);
 
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;

@@ -40,7 +40,10 @@ const cartSlice = createSlice({
         },
         refreshAllItem(state){
             state.length = 0;
-            JSON.parse(localStorage.getItem("cart")).map((x) => state.push({id: x.id, name: x.name, img: x.img, price: x.price, qty: x.qty}));
+            if(JSON.parse(localStorage.getItem("cart")) !== null){  
+                JSON.parse(localStorage.getItem("cart")).map((x) => state.push({id: x.id, name: x.name, img: x.img, price: x.price, qty: x.qty}));
+            }
+            
             //console.log("state: ",state);
             //console.log("refreshAllItem");
         }        

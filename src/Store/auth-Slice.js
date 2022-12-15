@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     name: "",
     isLogin: false,
+    token: ""
 };
 
 const authSlice = createSlice({
@@ -10,11 +11,10 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         login(state,actions){
-            if(actions.payload.email === "likes_168@yahoo.com.hk" && actions.payload.pwd === "Likes168"){
-                state.name = "蚊蚊";
-                state.isLogin = true;
-                localStorage.setItem("auth",JSON.stringify(state));
-            }
+            state.name = actions.payload.name;
+            state.name = actions.payload.name;
+            state.isLogin = true;
+            localStorage.setItem("auth",JSON.stringify(state));
         },
         logout(state){
             state.name = "";
@@ -22,8 +22,10 @@ const authSlice = createSlice({
             localStorage.setItem("auth",JSON.stringify(state));
         },
         loadLogin(state){
-            state.name = JSON.parse(localStorage.getItem("auth")).name;
-            state.isLogin = JSON.parse(localStorage.getItem("auth")).isLogin;
+            if(JSON.parse(localStorage.getItem("auth")) !== null){  
+                state.name = JSON.parse(localStorage.getItem("auth")).name;
+                state.isLogin = JSON.parse(localStorage.getItem("auth")).isLogin;
+            }
         }
     }
 

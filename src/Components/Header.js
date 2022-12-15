@@ -14,12 +14,13 @@ const Header =() => {
     const [showSignin, setShowSignin] = useState(false);
     const [showCart, setShowCart] = useState(false);
     const [showConfirm, setShowConfirm] =useState(false);
+    const userName = useSelector(state => state.auth.name);
     
     const dispatch = useDispatch();
-    useEffect(()=>{dispatch(cartAction.refreshAllItem());},[]);
+    useEffect(()=>{dispatch(cartAction.refreshAllItem());},[dispatch]);
     const state = useSelector(state => state.cart);
     //const state = JSON.parse(localStorage.getItem("cart"));
-    useEffect(()=>{dispatch(authAction.loadLogin());},[]);
+    useEffect(()=>{dispatch(authAction.loadLogin());},[dispatch]);
     const isLogin = useSelector(state => state.auth.isLogin);
     //const isLogin = JSON.parse(localStorage.getItem("auth")).isLogin;
     console.log(isLogin);
@@ -33,7 +34,7 @@ const Header =() => {
     }
 
     let cartItem = false;
-    state.map (x => {
+    state.forEach (x => {
         cartItem += x.qty;
     });
 
@@ -55,7 +56,7 @@ const Header =() => {
                         {!isLogin && <Link className="header_reg" to="signup">註冊</Link >}
                         
                         {isLogin && <div className="header_userinfo_welcome">
-                            <span>歡迎你! 蚊蚊 </span>
+                            <span>歡迎你! {userName} </span>
                             <i className="fa-solid fa-chevron-down"></i>
                             <div className="header_userinfo_welcome_list">
                                 <span onClick={() => setShowConfirm(true)}>登出</span>

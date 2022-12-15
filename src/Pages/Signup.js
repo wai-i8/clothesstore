@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useInput from "../Hook/useInput";
+import Backdrop from "../Components/Backdrop";
+import Confirm from "../Components/Confirm";
+import { useNavigate } from "react-router-dom";
 
 const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 const isNotEmpty = (value) => value.trim() !== "";
@@ -7,6 +10,7 @@ const isEmailFormat = (value) => emailRule.test(value);
 const isPwdFormat= (value) => value.length >=8 ;
 
 const Signup = () => {
+    const navigate = useNavigate();
 
     const {
         value: lastNameValue,
@@ -62,15 +66,19 @@ const Signup = () => {
     const submitForm = (e) => {
         e.preventDefault();
     
-        if (!emailValueIsValid) {
-          return;
-        }
+        //if (!emailValueIsValid) {
+        //  return;
+        //}
 
         console.log(emailValue);
         //
         // Backend Handling
         //
+        let body = {"lastName":lastNameValue,"firstName":firstNameValue,"email": emailValue,"pwd": pwdValue};
 
+        fetch("http://192.168.88.53:8080/signup", {method: "POST", 
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify(body)});
         
         resetLastName();
         resetFirstName();
@@ -78,7 +86,29 @@ const Signup = () => {
         resetPwd();
         resetConfirmPwd();
 
+        setShowConfirm(true);
+
     }
+
+    const [isEmailDuplicate,setIsEmailDuplicate] = useState(false);
+    const [showConfirm,setShowConfirm] = useState(false);
+    useEffect(()=>{
+        if(emailValueIsValid){
+            console.log("emailValueIsValid");
+            fetch("http://192.168.88.53:8080/checkemail?email="+emailValue, {method: "GET"})
+            .then(res => {console.log("res: ",res); return res.json()})
+            .then((result) => {
+                if (result.duplicate === "0"){
+                    setIsEmailDuplicate(false);
+                }else{
+                    setIsEmailDuplicate(true);
+                }
+                })
+        }
+    },[emailValue,emailValueIsValid])
+
+
+
     return(
         <div className="signup">
             <div className="signup_title">
@@ -110,6 +140,10 @@ const Signup = () => {
                         onBlur={onBlurEmail}
                         value={emailValue}
                     />
+                    {isEmailDuplicate &&
+                        <div className="signup_form_email_error"><i className="fa-solid fa-circle-exclamation"></i>
+                        電郵地址已被使用
+                        </div>}
                 </div>
                 <div className="signup_form_pwd">
                     <input type="password" placeholder={pwdValueError? "請輸入八位或以上的密碼" : "密碼"}
@@ -129,9 +163,14 @@ const Signup = () => {
                 </div>
                 <div className="signup_form_submit">
                     <button type="submit" disabled={!lastNameValueIsValid || !firstNameValueIsValid || !emailValueIsValid || 
-                        !pwdValueIsValid || !confirmPwdValueIsValid}>註冊</button>
+                        !pwdValueIsValid || !confirmPwdValueIsValid || isEmailDuplicate}>註冊</button>
                 </div>
             </form>
+            {showConfirm &&  
+            <Backdrop close={() => {setShowConfirm(false);navigate("/")}} transpanent={0.6}>
+                <Confirm close={() => {setShowConfirm(false);navigate("/")}} isOnlyConfirm="true" 
+                clear={() => navigate("/")}>註冊成功 請使用電郵地址登入</Confirm>
+            </Backdrop> }
         </div>
     )
 

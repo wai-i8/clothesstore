@@ -12,7 +12,7 @@ const Woman = (props) => {
 
     useEffect(()=>{   
         fetch("http://192.168.88.53:8080/clothes", {method: "GET"}).
-        then(res => res.json())
+        then(res => {console.log("res: ",res); return res.json()})
         .then(
             (result) => {
                     //console.log("result: ",result);
@@ -35,8 +35,8 @@ const Woman = (props) => {
         )
     },[props.children]);
 
-    
-    //console.log("listItem: ", listItem);
+    useEffect(()=>{  console.log("testing useEffect");});
+    console.log("testing rerender");
     return(
         <div className="woman">
             <div className="woman_product">
