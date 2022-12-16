@@ -7,11 +7,11 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addItem(state,actions){
-            console.log("Before addItem: state: ", state[0]);
+          //console.log("Before addItem: state: ", state[0]);
             let index = state.findIndex(x => x.id===actions.payload.id);
             if(index < 0){
                 state.push(actions.payload);
-                console.log("actions.payload: ", actions.payload);
+              //console.log("actions.payload: ", actions.payload);
             }else{
                 state[index].qty ++;
             }
@@ -23,9 +23,9 @@ const cartSlice = createSlice({
         },
         decreaseItem(state,actions){
             state[actions.payload].qty--;
-            console.log("state[actions.payload].qty: ",state);
+          //console.log("state[actions.payload].qty: ",state);
             if ( state[actions.payload].qty === 0){
-                console.log("tate[actions.payload].qty === 0");
+              //console.log("tate[actions.payload].qty === 0");
                 let temp = state.filter(x => x.qty > 0);
                 state.length = 0;
                 temp.map(x => state.push(x));
@@ -33,9 +33,9 @@ const cartSlice = createSlice({
             localStorage.setItem("cart",JSON.stringify(state));
         },
         deleteAllItem(state){
-            console.log("Before deleteAllItem: state: ", state);
+          //console.log("Before deleteAllItem: state: ", state);
             state.length = 0;
-            console.log("After deleteAllItem: state: ", state);
+          //console.log("After deleteAllItem: state: ", state);
             localStorage.setItem("cart",JSON.stringify([]));
         },
         refreshAllItem(state){

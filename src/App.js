@@ -8,6 +8,8 @@ import Footer from './Components/Footer';
 import Home from './Pages/Home';
 import Signup from './Pages/Signup';
 import Woman from './Pages/Woman';
+import Checkout from './Pages/Checkout';
+import Order from './Pages/Order';
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
           <Route exact path="woman" element={<Woman>woman</Woman>} />
           <Route exact path="man" element={<Woman>man</Woman>} />
           <Route exact path="child" element={<Woman>child</Woman>} />
+          <Route exact path="checkout" element={<Checkout />} />
+          <Route exact path="order" element={<Order />} />
       </Routes>
       <Footer />
     </Fragment>

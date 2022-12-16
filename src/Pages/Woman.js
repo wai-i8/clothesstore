@@ -35,8 +35,8 @@ const Woman = (props) => {
         )
     },[props.children]);
 
-    useEffect(()=>{  console.log("testing useEffect");});
-    console.log("testing rerender");
+    //useEffect(()=>{console.log("testing useEffect");});
+  //console.log("testing rerender");
     return(
         <div className="woman">
             <div className="woman_product">

@@ -15,6 +15,7 @@ const Header =() => {
     const [showCart, setShowCart] = useState(false);
     const [showConfirm, setShowConfirm] =useState(false);
     const userName = useSelector(state => state.auth.name);
+    const user_id = useSelector(state => state.auth.id);
     
     const dispatch = useDispatch();
     useEffect(()=>{dispatch(cartAction.refreshAllItem());},[dispatch]);
@@ -23,7 +24,7 @@ const Header =() => {
     useEffect(()=>{dispatch(authAction.loadLogin());},[dispatch]);
     const isLogin = useSelector(state => state.auth.isLogin);
     //const isLogin = JSON.parse(localStorage.getItem("auth")).isLogin;
-    console.log(isLogin);
+  //console.log(isLogin);
 
     const headerClickHandler = () => {
         if (phoneList[0] === "none"){
@@ -56,9 +57,10 @@ const Header =() => {
                         {!isLogin && <Link className="header_reg" to="signup">註冊</Link >}
                         
                         {isLogin && <div className="header_userinfo_welcome">
-                            <span>歡迎你! {userName} </span>
+                            <span>歡迎你!{userName} </span>
                             <i className="fa-solid fa-chevron-down"></i>
                             <div className="header_userinfo_welcome_list">
+                                <Link to="order">訂單</Link>
                                 <span onClick={() => setShowConfirm(true)}>登出</span>
                             </div>
                         </div>}
@@ -67,7 +69,7 @@ const Header =() => {
                             {cartItem && <div className="header_cart_no">{cartItem}</div>}
                             {showCart &&  
                             <Backdrop close={() => setShowCart(false)} transpanent={0}>
-                                <Cart/> 
+                                <Cart close={() => setShowCart(false)}/> 
                             </Backdrop>    
                             }
                         </div>
@@ -105,7 +107,7 @@ const Header =() => {
             </Backdrop> }
             {showConfirm &&  
             <Backdrop close={() => setShowConfirm(false)} transpanent={0.6}>
-                <Confirm close={() => setShowConfirm(false)} clear={() => dispatch(authAction.logout())} >確認登出?</Confirm>
+                <Confirm close={() => setShowConfirm(false)} confirm={() => dispatch(authAction.logout())} >確認登出?</Confirm>
             </Backdrop> }
         </Fragment>
     );

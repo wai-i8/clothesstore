@@ -70,7 +70,7 @@ const Signup = () => {
         //  return;
         //}
 
-        console.log(emailValue);
+      //console.log(emailValue);
         //
         // Backend Handling
         //
@@ -94,7 +94,7 @@ const Signup = () => {
     const [showConfirm,setShowConfirm] = useState(false);
     useEffect(()=>{
         if(emailValueIsValid){
-            console.log("emailValueIsValid");
+          //console.log("emailValueIsValid");
             fetch("http://192.168.88.53:8080/checkemail?email="+emailValue, {method: "GET"})
             .then(res => {console.log("res: ",res); return res.json()})
             .then((result) => {
@@ -169,7 +169,7 @@ const Signup = () => {
             {showConfirm &&  
             <Backdrop close={() => {setShowConfirm(false);navigate("/")}} transpanent={0.6}>
                 <Confirm close={() => {setShowConfirm(false);navigate("/")}} isOnlyConfirm="true" 
-                clear={() => navigate("/")}>註冊成功 請使用電郵地址登入</Confirm>
+                confirm={() => navigate("/")}>註冊成功 請使用電郵地址登入</Confirm>
             </Backdrop> }
         </div>
     )

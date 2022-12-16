@@ -43,7 +43,7 @@ const Signin = (props) => {
           return;
         }
 
-        console.log(emailValue);
+      //console.log(emailValue);
 
         //
         // Backend Handling
@@ -55,9 +55,9 @@ const Signin = (props) => {
         body: JSON.stringify(body)})
         .then(res => res.json())
             .then((result) => {
-                console.log("result: ", result.token);
+              //console.log("result: ", result.token);
                 if (result.status === "1"){
-                    dispatch(authAction.login({name: result.name, token: result.token}));                 
+                    dispatch(authAction.login({id: result.id, name: result.name, token: result.token}));                 
                 }
             }
         )

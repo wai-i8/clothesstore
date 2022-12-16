@@ -21,7 +21,7 @@ const Confirm = (props) => {
         <span>{props.children}</span>
         <div className="confirm_form">
             <div className="confirm_form_submit" style={style}>
-                    <button onClick={() => {props.clear();props.close()}}>確認</button>
+                    <button onClick={() => {props.confirm();props.close()}}>確認</button>
             </div>
             {!props.isOnlyConfirm &&
             <div className="confirm_form_cancel">
