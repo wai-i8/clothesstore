@@ -15,6 +15,7 @@ const authSlice = createSlice({
             state.id = actions.payload.id;
             state.name = actions.payload.name;
             state.isLogin = true;
+            state.token = actions.payload.token;
             localStorage.setItem("auth",JSON.stringify(state));
             console.log("state.id: ",state.id);
         },
@@ -29,6 +30,7 @@ const authSlice = createSlice({
                 state.id = JSON.parse(localStorage.getItem("auth")).id;
                 state.name = JSON.parse(localStorage.getItem("auth")).name;
                 state.isLogin = JSON.parse(localStorage.getItem("auth")).isLogin;
+                state.token = JSON.parse(localStorage.getItem("auth")).token;
             }
         }
     }

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector , useDispatch } from "react-redux"
 import { cartAction } from "../Store/cart-Slice";
+import { authAction } from "../Store/auth-Slice";
 import { useNavigate } from "react-router-dom";
 import Backdrop from "../Components/Backdrop";
 import Confirm from "../Components/Confirm";
+import Signin from "../Components/Signin";
 
 const Checkout = () => {
     //const state = useSelector(state => state.cart)
@@ -12,9 +14,13 @@ const Checkout = () => {
     const state = useSelector(state => state.cart);
     const [showConfirm, setShowConfirm] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [showFailed, setShowFailed] = useState(false);
     const navigate = useNavigate();
     const isLogin = useSelector(state => state.auth.isLogin);
     const user_id = useSelector(state => state.auth.id);
+    const token = useSelector(state => state.auth.token);
+    const paymentMsg = useRef("");
+    const [showSignin, setShowSignin] = useState(false);
     
     let total = 0;
     state.map( x => total = total + x.price * x.qty)
@@ -51,13 +57,25 @@ const Checkout = () => {
             bodyItem += "{\"item_id\": "+x.id+", \"name\": \""+x.name+"\", \"price\": "+x.price+", \"imgurl\": \""+x.img+"\", \"qty\": "+x.qty+"}"
         });
         bodyItem += "]"
-        let body = {"user_id":user_id ,"items": bodyItem, "amount": total}
+        let body = {"user_id":user_id ,"items": bodyItem, "amount": total};
 
         fetch("http://192.168.88.53:8080/commitorder", {method: "POST", 
-        headers: {"content-type": "application/json"},
-        body: JSON.stringify(body)});
-
-        dispatch(cartAction.deleteAllItem());
+        headers: {"content-type": "application/json", authorization: `Bearer ${token}`},
+        body: JSON.stringify(body)})
+        .then(res => res.json())
+        .then(
+            (result) => {
+                console.log("result: ", result);
+                if(result.status === "1"){
+                    paymentMsg.current = "付款成功 稍後請於訂單查詢";
+                    setShowSuccess(true);
+                    return;
+                }else{
+                    paymentMsg.current = "付款失敗 請重新登入";
+                    setShowFailed(true);
+                }
+            }
+        )
     }
     //console.log("state.length: ", state.length);
     let cartEmpty = state.length === 0 ? true : false;
@@ -75,17 +93,33 @@ const Checkout = () => {
             }
             {showConfirm && isLogin &&
             <Backdrop close={() => setShowConfirm(false)} transpanent={0.6}>
-                <Confirm close={() => setShowConfirm(false)} confirm={() => {setShowConfirm(false);setShowSuccess(true)}}>確認付款?</Confirm>
+                <Confirm close={() => setShowConfirm(false)} confirm={() => {setShowConfirm(false);payHandler()}}>確認付款?</Confirm>
             </Backdrop>}
             {showConfirm && !isLogin &&
             <Backdrop close={() => setShowConfirm(false)} transpanent={0.6}>
                 <Confirm close={() => setShowConfirm(false)} isOnlyConfirm="true" 
-                confirm={() => setShowConfirm(false)}>請先登入</Confirm>
+                confirm={() => {setShowConfirm(false);setShowSignin(true)}}>請先登入</Confirm>
             </Backdrop> }
+
+
+
             {showSuccess &&  
-            <Backdrop close={() => {setShowSuccess(false);navigate("/");payHandler()}} transpanent={0.6}>
-                <Confirm close={() => {setShowSuccess(false);navigate("/");payHandler()}} isOnlyConfirm="true" 
-                confirm={() => navigate("/")}>付款成功 稍後請於訂單查詢</Confirm>
+            <Backdrop close={() => {setShowSuccess(false);dispatch(cartAction.deleteAllItem());;navigate("/")}} transpanent={0.6}>
+                <Confirm close={() => {setShowSuccess(false);dispatch(cartAction.deleteAllItem());;navigate("/")}} isOnlyConfirm="true" 
+                confirm={() => {setShowSuccess(false);dispatch(cartAction.deleteAllItem());;navigate("/")}}>{paymentMsg.current}</Confirm>
+            </Backdrop> }
+            {showFailed &&  
+            <Backdrop close={() => {dispatch(authAction.logout());setShowFailed(false);setShowSignin(true)}} transpanent={0.6}>
+                <Confirm close={() => {dispatch(authAction.logout());setShowFailed(false);setShowSignin(true)}} isOnlyConfirm="true" 
+                confirm={() => {dispatch(authAction.logout());setShowFailed(false);setShowSignin(true)}}>{paymentMsg.current}</Confirm>
+            </Backdrop> }
+
+
+
+
+            {showSignin &&  
+            <Backdrop close={() => setShowSignin(false)}  transpanent={0.6}>
+                <Signin close={() => setShowSignin(false)} />
             </Backdrop> }
         </div>
     )

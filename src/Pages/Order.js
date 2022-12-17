@@ -7,6 +7,7 @@ const Order = () => {
     const dispatch = useDispatch();
 
     const state = useSelector(state => state.cart);
+    const token = useSelector(state => state.auth.token);
     const [listItem,setListItem] = useState();
     const user_id = useSelector(state => state.auth.id);
     let total = 0;
@@ -14,10 +15,11 @@ const Order = () => {
   //console.log("state.length: ", state.length)
 
     useEffect(()=>{    
-        console.log("user_id: ",user_id);
+        console.log("token: ",token);
 
-    fetch("http://192.168.88.53:8080/orders?user_id="+user_id, {method: "GET"}).
-    then(res => res.json())
+    fetch("http://192.168.88.53:8080/orders?user_id="+user_id, {method: "GET",
+        headers: {authorization: `Bearer ${token}`,},})
+    .then(res => res.json())
     .then(
         (result) => {
                 setListItem(result.slice(0).reverse().map((x) => {

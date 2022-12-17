@@ -15,7 +15,7 @@ const Header =() => {
     const [showCart, setShowCart] = useState(false);
     const [showConfirm, setShowConfirm] =useState(false);
     const userName = useSelector(state => state.auth.name);
-    const user_id = useSelector(state => state.auth.id);
+    const token = useSelector(state => state.auth.token);
     
     const dispatch = useDispatch();
     useEffect(()=>{dispatch(cartAction.refreshAllItem());},[dispatch]);
