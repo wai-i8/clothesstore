@@ -51,9 +51,9 @@ const Cart = (props) => {
                 <div className="cart_buttom_clear">
                     <span onClick={() => setShowConfirm(true)}>清空購物車</span>
                 </div>
-                <div className="cart_buttom_right">
+                <div className="cart_buttom_right" onClick={() => setShowCheckOut(true)}>
                     <div className="cart_buttom_right_checkout">
-                        <i className="fa-solid fa-sack-dollar" onClick={() => setShowCheckOut(true)}></i>
+                        <i className="fa-solid fa-sack-dollar"></i>
                     </div>
                     <div><span>${total}</span></div>
                 </div>

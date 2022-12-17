@@ -85,9 +85,10 @@
             width: 75%;
             display: flex;
             justify-content: flex-end;
+            cursor: pointer;
             &_checkout{
                 margin-right: 10px;
-                cursor: pointer;
+                
 
             }
         }

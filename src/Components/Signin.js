@@ -30,11 +30,11 @@ const Signin = (props) => {
     const dispatch = useDispatch();
     const isLogin = useSelector(state => state.auth.isLogin);
     const [isError, setIsError] = useState(false);
-    useEffect(() => {
-        if(isLogin){
-            props.close()
-        }
-    })
+    //useEffect(() => {
+    //    if(isLogin){
+    //        props.close()
+    //    }
+    //})
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -57,7 +57,8 @@ const Signin = (props) => {
             .then((result) => {
               //console.log("result: ", result.token);
                 if (result.status === "1"){
-                    dispatch(authAction.login({id: result.id, name: result.name, token: result.token}));                 
+                    dispatch(authAction.login({id: result.id, email: result.email, name: result.name, token: result.token}));        
+                    props.close();         
                 }
             }
         )

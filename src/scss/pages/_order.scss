@@ -7,6 +7,9 @@
         font-family: monospace;
     }
     &_item{
+        @include phonein{
+            width: 90%;
+        }
         width: 50%;
         //display: flex;
         align-items: center;
@@ -28,18 +31,17 @@
                 font-size: 0.8rem;
             }
             &_date{
-                width: 20%;
                 display: flex;
                 flex-direction: column;
             }
             &_amount{
-                width: 40%;
                 display: flex;
                 flex-direction: column;
+                flex: auto;
+                margin-left: 10%;
             }
             &_id{
-                width: 40%;
-                text-align: end;
+
             }
             
         }
@@ -54,13 +56,17 @@
                     width: 30%;
                 }
                 &_right{
+                    @include phonein{
+                        font-size: 0.8rem;
+                    }
+                    width: 70%;
                     margin-left: 10px;
-                    margin-top: 25px;
+                    //margin-top: 25px;
                     font-size: 1.2rem;
                     display: flex;
-                    flex-direction: column;
-                    h7{
-                        font-size: 1rem;
+                    align-items: center;
+                    &_content{
+
                     }
                 }
             }
@@ -73,4 +79,10 @@
         font-size: 1.5rem;
         margin-top: 100px;
     }
+}
+.smallfont{
+    @include phonein{
+        font-size: 0.8rem;
+    }
+    font-size: 1rem;
 }

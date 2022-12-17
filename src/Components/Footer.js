@@ -29,8 +29,8 @@ const Footer =() => {
             </div>
             <div className="footer_bottom">
                 <div className="footer_bottom-left">
-                    <Link to="#">PRIVACY POLICY私隱權保護</Link>
-                    <Link to="#">CUSTOMER ENQUIRY顧客意見及查詢</Link>
+                    <Link to="#"><span className="spanblock">PRIVACY POLICY</span><span className="spanblock">私隱權保護</span></Link>
+                    <Link to="#"><span className="spanblock">CUSTOMER ENQUIRY</span><span className="spanblock">顧客意見及查詢</span></Link>
                 </div>
                 <div className="footer_bottom-right">
                     <span>COPYRIGHT © 蚊蚊 ALL RIGHTS RESERVED</span>

@@ -37,9 +37,11 @@ const Order = () => {
                                     </div>
                                 </div>
                                 <div className="order_item_details_product_right">
-                                    <div><span>{jsonItem.name}</span></div>
-                                    <div><span>${jsonItem.price} <h7>數量:</h7> {jsonItem.qty}</span></div>
-                                    <div><span><h7>總額:</h7> {jsonItem.price*jsonItem.qty}</span></div>
+                                    <div className="order_item_details_product_right_content">
+                                        <div><span>{jsonItem.name}</span></div>
+                                        <div><span>${jsonItem.price} <span className="smallfont">數量:</span> {jsonItem.qty}</span></div>
+                                        <div><span className="smallfont">總額:</span><span> {jsonItem.price*jsonItem.qty}</span></div>
+                                    </div>
                                 </div>
                             </div>
                         )

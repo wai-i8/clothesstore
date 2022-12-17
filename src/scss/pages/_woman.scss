@@ -7,11 +7,18 @@
         font-family: monospace;
     }
     &_product{
+        @include phonein{
+            width: 90%;
+        }
         width: 65%;
         display: grid;
         grid-template-columns: repeat(auto-fit, 25rem);
-        align-items: center;
+        justify-content: space-evenly;
+        justify-items: center;
         &_item{
+            @include phonein{
+                width: inherit;
+            }
             padding: 30px 10px 10px;
             &_details{
                 padding: 3%;
