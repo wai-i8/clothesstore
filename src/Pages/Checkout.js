@@ -65,7 +65,7 @@ const Checkout = () => {
         .then(res => res.json())
         .then(
             (result) => {
-                console.log("result: ", result);
+               //console.log("result: ", result);
                 if(result.status === "1"){
                     paymentMsg.current = "付款成功 稍後請於訂單查詢";
                     setShowSuccess(true);

@@ -22,6 +22,12 @@ function App() {
           <Route exact path="woman" element={<Woman>woman</Woman>} />
           <Route exact path="man" element={<Woman>man</Woman>} />
           <Route exact path="child" element={<Woman>child</Woman>} />
+          <Route exact path="coats" element={<Woman>COATS</Woman>} />
+          <Route exact path="blazers" element={<Woman>BLAZERS</Woman>} />
+          <Route exact path="down" element={<Woman>DOWN</Woman>} />
+          <Route exact path="t-shirts" element={<Woman>T-SHIRTS</Woman>} />
+          <Route exact path="shirts" element={<Woman>SHIRTS</Woman>} />
+          <Route exact path="long" element={<Woman>LONG</Woman>} />
           <Route exact path="checkout" element={<Checkout />} />
           <Route exact path="order" element={<Order />} />
       </Routes>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useInput from "../Hook/useInput";
 import { authAction } from "../Store/auth-Slice";
 import { useDispatch, useSelector } from "react-redux";
+import sha256 from 'js-sha256';
 
 const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 const isEmailFormat = (value) => emailRule.test(value);
@@ -48,7 +49,9 @@ const Signin = (props) => {
         //
         // Backend Handling
         //
-        let body = {"email": emailValue,"pwd": pwdValue};
+        const hashPwdValue = sha256(pwdValue);
+       //console.log(hashPwdValue);
+        let body = {"email": emailValue,"pwd": hashPwdValue};
             
         fetch("http://192.168.88.53:8080/login", {method: "POST", 
         headers: {"content-type": "application/json"},

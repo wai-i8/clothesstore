@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useInput from "../Hook/useInput";
 import { authAction } from "../Store/auth-Slice";
 import { useDispatch, useSelector } from "react-redux";
+import sha256 from 'js-sha256';
 
 const isPwdFormat= (value) => value.length >=8 ;
 
@@ -55,9 +56,9 @@ const ModifyPwd = (props) => {
         //
         // Backend Handling
         //
-        let body = {"email": email,"pwd": oldPwdValue};
-            
-        fetch("http://192.168.88.53:8080/modifypwd?email="+email+"&pwd="+oldPwdValue+"&newPwd="+pwdValue, {method: "PUT"})
+        const hashOldPwdValue = sha256(oldPwdValue);
+        const hashPwdValue = sha256(pwdValue);
+        fetch("http://192.168.88.53:8080/modifypwd?email="+email+"&pwd="+hashOldPwdValue+"&newPwd="+hashPwdValue, {method: "PUT"})
         .then(res => res.json())
             .then((result) => {
               //console.log("result: ", result.token);
@@ -81,13 +82,13 @@ const ModifyPwd = (props) => {
     //    if(oldPwdValueIsValid){
     //      //console.log("emailValueIsValid");
     //        let body = {"email": email,"pwd": oldPwdValue};
-    //        console.log("body: ", body);
+    //       //console.log("body: ", body);
     //        fetch("http://192.168.88.53:8080/login", {method: "POST", 
     //        headers: {"content-type": "application/json"},
     //        body: JSON.stringify(body)})
     //        .then(res => res.json())
     //        .then((result) => {
-    //            console.log("result: ", result);
+    //           //console.log("result: ", result);
     //                if (result.status === "1"){
     //                    setOldPwdCorrect(true);  
     //                }else{

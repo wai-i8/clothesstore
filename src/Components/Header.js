@@ -20,6 +20,7 @@ const Header =() => {
     const [showCart, setShowCart] = useState(false);
     const [showConfirm, setShowConfirm] =useState(false);
     const [showModifyPwdSuccess, setShowModifyPwdSuccess] = useState(false);
+    const [phoneWindow, setPhoneWindow] = useState(false);
     const userName = useSelector(state => state.auth.name);
     const token = useSelector(state => state.auth.token);
     
@@ -52,6 +53,24 @@ const Header =() => {
         cartItem += x.qty;
     });
 
+    
+
+    const handleWindowResize = () => {
+        if (window.innerWidth <= 600){
+            setPhoneWindow(true);
+           //console.log("1Window.innerWidth: ", window.innerWidth, "/phoneWindow: ", phoneWindow);
+        }else if (window.innerWidth > 600){
+            setPhoneWindow(false);
+           //console.log("2Window.innerWidth: ", window.innerWidth, "/phoneWindow: ", phoneWindow);
+        }
+        
+    }
+    useEffect(() => {
+        handleWindowResize();
+    },[]);
+
+    window.addEventListener('resize', handleWindowResize);
+
     return(
         <Fragment>
             <div className="header">
@@ -78,7 +97,7 @@ const Header =() => {
                                 <span onClick={() => setShowConfirm(true)}>登出</span>
                             </div>
                         </div>}
-                        <div className="header_userinfo_cart" onClick={() => showCart? setShowCart(false) : setShowCart(true)}>
+                        <div className="header_userinfo_cart" onClick={() => phoneWindow? closeAllPhone() || navigate("checkout") : (showCart? setShowCart(false) : setShowCart(true))}>
                             <i className="header_userinfo_cart_icon fa-solid fa-cart-shopping"></i>
                             {cartItem && <div className="header_userinfo_cart_no">{cartItem}</div>}
                             {showCart &&  
@@ -90,11 +109,17 @@ const Header =() => {
                     </div>
                 </div>
                 <div className="header_bottom">
-                <div className="header_bottom-newitem">
-                    <div className="header_bottom-newitem-title"><span>新品熱賣</span></div>
-                    <div className="header_bottom-newitem-cat">
-                        <Link to="man">男裝</Link>
-                        <Link to="woman">女裝</Link>
+                <div className="header_bottom_newitem">
+                    <div className="header_bottom_newitem_title">
+                        <span>新品熱賣</span>
+                    </div>
+                    <div className="header_bottom_newitem_cat">
+                        <Link to="coats">大衣</Link>
+                        <Link to="blazers">西裝 / 外套</Link>
+                        <Link to="down">羽絨</Link>
+                        <Link to="t-shirts">短袖T恤 / 背心</Link>
+                        <Link to="shirts">休閒恤衫</Link>
+                        <Link to="long">長袖 / 7分袖T恤</Link>
                     </div>
                 </div>
                 <Link to="man">男裝</Link>
@@ -110,7 +135,6 @@ const Header =() => {
                         onClick={() => {closeAllPhone();setShowModifyPwd(true)}}>修改密碼</li>}
                         {phoneListAc && <li className="header_phonelist_ul_ac" 
                         onClick={() => {closeAllPhone();setShowConfirm(true)}}>登出</li>}
-                        <Link to="checkout" onClick={closeAllPhone}>購物車</Link>
                         {!isLogin && <li onClick={() => {setShowSignin(true); setPhoneList(phoneOff)}}>登入</li>}
                         {!isLogin && <Link to="signup" onClick={closeAllPhone}>註冊</Link >}
                         <Link to="man" onClick={closeAllPhone}>男裝</Link>

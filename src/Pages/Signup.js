@@ -3,6 +3,7 @@ import useInput from "../Hook/useInput";
 import Backdrop from "../Components/Backdrop";
 import Confirm from "../Components/Confirm";
 import { useNavigate } from "react-router-dom";
+import sha256 from 'js-sha256';
 
 const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 const isNotEmpty = (value) => value.trim() !== "";
@@ -74,7 +75,8 @@ const Signup = () => {
         //
         // Backend Handling
         //
-        let body = {"lastName":lastNameValue,"firstName":firstNameValue,"email": emailValue,"pwd": pwdValue};
+        const hashPwdValue = sha256(pwdValue);
+        let body = {"lastName":lastNameValue,"firstName":firstNameValue,"email": emailValue,"pwd": hashPwdValue};
 
         fetch("http://192.168.88.53:8080/signup", {method: "POST", 
         headers: {"content-type": "application/json"},

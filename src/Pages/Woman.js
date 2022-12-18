@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { cartAction } from "../Store/cart-Slice";
 import { useDispatch } from "react-redux"
 import ToTopButton from "../Components/ToTopButton";
-import sha256 from 'js-sha256';
 
 const Woman = (props) => {
     const dispatch = useDispatch();
@@ -12,7 +11,7 @@ const Woman = (props) => {
 
     useEffect(()=>{   
         fetch("http://192.168.88.53:8080/clothes", {method: "GET"}).
-        then(res => {console.log("res: ",res); return res.json()})
+        then(res => res.json())
         .then(
             (result) => {
                     //console.log("result: ",result);
@@ -33,6 +32,7 @@ const Woman = (props) => {
                 }))
             }
         )
+        window.scrollTo({top: 0,left: 0,});
     },[props.children]);
 
     //useEffect(()=>{console.log("testing useEffect");});

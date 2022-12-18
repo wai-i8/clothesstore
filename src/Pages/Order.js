@@ -15,22 +15,24 @@ const Order = () => {
   //console.log("state.length: ", state.length)
 
     useEffect(()=>{    
-        console.log("token: ",token);
-
+       //console.log("token: ",token);
+    if (user_id === -1){
+        return;
+    }
     fetch("http://192.168.88.53:8080/orders?user_id="+user_id, {method: "GET",
         headers: {authorization: `Bearer ${token}`,},})
     .then(res => res.json())
     .then(
         (result) => {
                 setListItem(result.slice(0).reverse().map((x) => {
-                    console.log("setListItem:", x.id);
-                    console.log("x.item:", x.items);
-                    console.log("JSON.parse x.item:", JSON.parse(x.items));
+                   //console.log("setListItem:", x.id);
+                   //console.log("x.item:", x.items);
+                   //console.log("JSON.parse x.item:", JSON.parse(x.items));
                     let json = JSON.parse(x.items);
-                    console.log("JSON.parse x.item.imgurl:", json[0].imgurl);
-                    const listProduct = json.map(jsonItem => {
+                   //console.log("JSON.parse x.item.imgurl:", json[0].imgurl);
+                    const listProduct = json.map((jsonItem,index) => {
                         return(
-                            <div className="order_item_details_product">
+                            <div key={index} className="order_item_details_product">
                                 <div className="order_item_details_product_left">
                                     <div className="order_item_details_product_left_img">
                                         <img src={jsonItem.imgurl}/>
@@ -58,7 +60,7 @@ const Order = () => {
                                     <span>${x.amount}</span>
                                 </div>
                                 <div className="order_item_header_id">
-                                    <span>訂單 # {x.id}</span>
+                                    <span>訂單 #{x.id}</span>
                                 </div>
                             </div>
                             <div className="order_item_details">

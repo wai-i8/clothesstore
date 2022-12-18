@@ -80,11 +80,12 @@
         display: flex;
         justify-content: flex-end;
         flex: 0 0 20%;
-        @include phoneout;
+       
         &_welcome:hover &_welcome_list{
             display: flex;
         }
         &_welcome{
+            @include phoneout;
             margin-right: 1px;
             &_list{
                 display: none;
@@ -106,6 +107,7 @@
             }
         }
         &_login, &_reg, &_cart{
+            @include phoneout;
             margin: 3%;
             width: 36px;
             text-align: center;
@@ -127,7 +129,7 @@
         }
         &_cart{
             @include phonein{
-                display: block;
+                display: inherit;
             }
         }
     }
@@ -143,25 +145,27 @@
                 color: #000;
             }
         }
-        &-newitem:hover &-newitem-cat{
-            display: flex; 
-        }
-        &-newitem-title{
-            height: 100%;
-        }
-        &-newitem-cat{
-            display: none; 
-            width: 20%;
-            transform: translateX(-30%);
-            background-color: #fff;
-            padding: 1rem;
-            position: absolute;
-            //display: flex;
-            flex-direction: column;
-            border-radius: 0.3rem;
-            box-shadow: 5px 5px 15px -3px rgb(0 0 0 / 70%);
-            & > *{
-                margin: 1rem;
+        &_newitem{
+            &:hover &_cat {
+                display: flex; 
+            }
+            &_title{
+                
+            }
+            &_cat{
+                display: none; 
+                width: 300px;
+                transform: translateX(-40%);
+                background-color: #fff;
+                padding: 1rem;
+                position: absolute;
+                //display: flex;
+                flex-direction: column;
+                border-radius: 0.3rem;
+                box-shadow: 5px 5px 15px -3px rgb(0 0 0 / 70%);
+                & > *{
+                    margin: 1rem;
+                }
             }
         }
     }
