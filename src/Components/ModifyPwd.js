@@ -58,7 +58,7 @@ const ModifyPwd = (props) => {
         //
         const hashOldPwdValue = sha256(oldPwdValue);
         const hashPwdValue = sha256(pwdValue);
-        fetch("http://192.168.88.53:8080/modifypwd?email="+email+"&pwd="+hashOldPwdValue+"&newPwd="+hashPwdValue, {method: "PUT"})
+        fetch("http://101.78.209.214:8080/modifypwd?email="+email+"&pwd="+hashOldPwdValue+"&newPwd="+hashPwdValue, {method: "PUT"})
         .then(res => res.json())
             .then((result) => {
               //console.log("result: ", result.token);
@@ -83,7 +83,7 @@ const ModifyPwd = (props) => {
     //      //console.log("emailValueIsValid");
     //        let body = {"email": email,"pwd": oldPwdValue};
     //       //console.log("body: ", body);
-    //        fetch("http://192.168.88.53:8080/login", {method: "POST", 
+    //        fetch("http://101.78.209.214:8080/login", {method: "POST", 
     //        headers: {"content-type": "application/json"},
     //        body: JSON.stringify(body)})
     //        .then(res => res.json())

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from '../img/dancing.gif';
 import Backdrop from "./Backdrop";
@@ -31,6 +31,8 @@ const Header =() => {
     useEffect(()=>{dispatch(authAction.loadLogin());},[dispatch]);
     const isLogin = useSelector(state => state.auth.isLogin);
     const navigate = useNavigate();
+
+    const cartItem = useRef(0);
     //const isLogin = JSON.parse(localStorage.getItem("auth")).isLogin;
   //console.log(isLogin);
 
@@ -48,12 +50,10 @@ const Header =() => {
     }
 
 
-    let cartItem = false;
+    cartItem.current = 0;
     state.forEach (x => {
-        cartItem += x.qty;
+        cartItem.current += x.qty;
     });
-
-    
 
     const handleWindowResize = () => {
         if (window.innerWidth <= 600){
@@ -71,6 +71,7 @@ const Header =() => {
 
     window.addEventListener('resize', handleWindowResize);
 
+
     return(
         <Fragment>
             <div className="header">
@@ -82,7 +83,7 @@ const Header =() => {
                         <Link to="/">
                             <img className="header_img" src={logo} alt="" onClick={closeAllPhone}/>
                         </Link >
-                        <Link className="header_tittle" to="/">蚊蚊時裝</Link >
+                        <Link className="header_tittle" to="/">VF</Link >
                     </div>
                     <div className="header_userinfo">
                         {!isLogin && <span className="header_userinfo_login" onClick={() => setShowSignin(true)}>登入</span >}
@@ -99,7 +100,7 @@ const Header =() => {
                         </div>}
                         <div className="header_userinfo_cart" onClick={() => phoneWindow? closeAllPhone() || navigate("checkout") : (showCart? setShowCart(false) : setShowCart(true))}>
                             <i className="header_userinfo_cart_icon fa-solid fa-cart-shopping"></i>
-                            {cartItem && <div className="header_userinfo_cart_no">{cartItem}</div>}
+                            {cartItem && <div className="header_userinfo_cart_no">{cartItem.current}</div>}
                             {showCart &&  
                             <Backdrop close={() => setShowCart(false)} transpanent={0}>
                                 <Cart close={() => setShowCart(false)}/> 

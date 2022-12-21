@@ -53,7 +53,7 @@ const Signin = (props) => {
        //console.log(hashPwdValue);
         let body = {"email": emailValue,"pwd": hashPwdValue};
             
-        fetch("http://192.168.88.53:8080/login", {method: "POST", 
+        fetch("http://101.78.209.214:8080/login", {method: "POST", 
         headers: {"content-type": "application/json"},
         body: JSON.stringify(body)})
         .then(res => res.json())

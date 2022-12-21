@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { cartAction } from "../Store/cart-Slice";
 import { useDispatch } from "react-redux"
 import ToTopButton from "../Components/ToTopButton";
 
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+
 const Woman = (props) => {
     const dispatch = useDispatch();
     const [listItem,setListItem] = useState([]);
+    const [snackBar, setSnackBar] = useState(false);
 
     //console.log("sha256: ",sha256("hello"))
 
     useEffect(()=>{   
-        fetch("http://192.168.88.53:8080/clothes", {method: "GET"}).
+        fetch("https://elegant-moment-284814-default-rtdb.firebaseio.com/clothes.json", {method: "GET"}).
         then(res => res.json())
         .then(
             (result) => {
@@ -25,7 +29,7 @@ const Woman = (props) => {
                                     <span className="woman_product_item_details_price">${x.price}</span>
                                 </div>
                                 <div className="woman_product_item_cart">
-                                    <span onClick={() => dispatch(cartAction.addItem({id: x.id, name: x.name, img: x.imgurl, price: x.price, qty: 1}))}><i className="fa-solid fa-cart-arrow-down" />加入購物車</span>
+                                    <span onClick={() => {dispatch(cartAction.addItem({id: x.id, name: x.name, img: x.imgurl, price: x.price, qty: 1}));handleOpenSnackBar()}}><i className="fa-solid fa-cart-arrow-down" />加入購物車</span>
                                 </div>
                             </div>  
                         )
@@ -35,6 +39,29 @@ const Woman = (props) => {
         window.scrollTo({top: 0,left: 0,});
     },[props.children]);
 
+    const handleOpenSnackBar = () => {
+        setSnackBar(true);
+    };
+    
+    const handleCloseSnackBar = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        setSnackBar(false);
+    };
+
+    const action = (
+        <Fragment>
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleCloseSnackBar}
+          >
+          </IconButton>
+        </Fragment>
+    );
+
     //useEffect(()=>{console.log("testing useEffect");});
   //console.log("testing rerender");
     return(
@@ -43,6 +70,13 @@ const Woman = (props) => {
                 {listItem}
             </div>
             <ToTopButton />
+            <Snackbar
+                open={snackBar}
+                autoHideDuration={3000}
+                onClose={handleCloseSnackBar}
+                message="已加入購物車"
+                action={action}
+            />
         </div>
     )
 }

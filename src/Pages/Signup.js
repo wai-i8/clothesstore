@@ -78,7 +78,7 @@ const Signup = () => {
         const hashPwdValue = sha256(pwdValue);
         let body = {"lastName":lastNameValue,"firstName":firstNameValue,"email": emailValue,"pwd": hashPwdValue};
 
-        fetch("http://192.168.88.53:8080/signup", {method: "POST", 
+        fetch("http://101.78.209.214:8080/signup", {method: "POST", 
         headers: {"content-type": "application/json"},
         body: JSON.stringify(body)});
         
@@ -97,7 +97,7 @@ const Signup = () => {
     useEffect(()=>{
         if(emailValueIsValid){
           //console.log("emailValueIsValid");
-            fetch("http://192.168.88.53:8080/checkemail?email="+emailValue, {method: "GET"})
+            fetch("http://101.78.209.214:8080/checkemail?email="+emailValue, {method: "GET"})
             .then(res => {console.log("res: ",res); return res.json()})
             .then((result) => {
                 if (result.duplicate === "0"){

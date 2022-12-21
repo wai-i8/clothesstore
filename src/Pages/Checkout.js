@@ -59,7 +59,7 @@ const Checkout = () => {
         bodyItem += "]"
         let body = {"user_id":user_id ,"items": bodyItem, "amount": total};
 
-        fetch("http://192.168.88.53:8080/commitorder", {method: "POST", 
+        fetch("http://101.78.209.214:8080/commitorder", {method: "POST", 
         headers: {"content-type": "application/json", authorization: `Bearer ${token}`},
         body: JSON.stringify(body)})
         .then(res => res.json())
