@@ -1,4 +1,8 @@
  import React, { useEffect, useReducer, useRef } from "react";
+import banner1 from "../img/banner/banner1.jpg";
+import banner2 from "../img/banner/banner2.jpg";
+import banner3 from "../img/banner/banner3.jpg";
+import banner4 from "../img/banner/banner4.jpg";
 
  const initialState = {count: 0};
 
@@ -23,10 +27,10 @@ const Gallery = () => {
     const imgUrlLength = useRef(0);
 
     const imgUrl = [
-        "https://www.gu-global.com/hk/images/banners/221128/221128_main_W_Bags.jpg",
-        "https://www.gu-global.com/hk/images/banners/221114/221114_main_MW_Sweatshirt_feature.jpg",
-        "https://www.gu-global.com/hk/images/banners/221125/221125_main_W_Outer_PM2.jpg",
-        "https://www.gu-global.com/hk/images/banners/221121/221121_main_M_Baggy_Slacks.jpg",
+        banner1,
+        banner2,
+        banner3,
+        banner4
     ]
     imgUrlLength.current = imgUrl.length;
     let ulStyle = {transform: `translateX(-${indexOfCurrentImg.count*(1/imgUrl.length)*100}%`, width: `${imgUrl.length*100}%`};
