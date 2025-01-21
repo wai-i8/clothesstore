@@ -1,6 +1,6 @@
 # Clothes Store
 
-**Welcome to my first React project!** This is a fully functional e-commerce website for browsing and purchasing clothes. The project showcases my skills in **React**, **Firebase**, and modern front-end development practices.
+**Welcome to my React project!** This is a fully functional e-commerce website for browsing and purchasing clothes. The project showcases my skills in **React**, **Firebase**, and modern front-end development practices.
 
 ---
 
