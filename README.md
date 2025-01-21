@@ -40,3 +40,15 @@ Feel free to reach out if you have any questions or want to discuss this project
 
 - 📧 **Email**: [laukaiwaisam@hotmail.com](mailto:laukaiwaisam@hotmail.com)
 - 🔗 **LinkedIn**: [Kai Wai Lau](https://www.linkedin.com/in/kai-wai-lau-973383a8/)
+
+---
+
+## Acknowledgements
+
+- Thanks to **React** for making front-end development enjoyable.
+- Special thanks to **Firebase** for providing a simple and powerful backend solution.
+- Product images used in this project are sourced from:
+  - [GU Official Website](https://www.gu-global.com/)
+  - [Uniqlo Official Website](https://www.uniqlo.com/)
+  - **All rights to these images belong to their respective owners.**
+- This project is for educational purposes only and does not claim ownership of any brand assets.
