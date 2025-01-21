@@ -10,7 +10,9 @@
 - 🔒 **Secure Login**: User authentication using Firebase Authentication.
 - 📦 **Order History**: Keep track of your past orders with detailed information.
 - ⚡ **Real-time Updates**: All data is stored and updated in real-time using Firebase Realtime Database.
-- 🌐 **Responsive Design**: Works seamlessly on both desktop and mobile devices.
+- 🌐 **Responsive Design**: Automatically adjusts the layout for optimal viewing on different devices, including mobile phones, tablets, and desktops.
+- 🌍 **Language Switching**: Supports multiple languages with a built-in toggle, allowing users to switch seamlessly between languages for a better user experience.
+
 
 ---
 
